@@ -11,20 +11,15 @@ from handlers.admin import register_admin_handlers
 from handlers.user import register_user_handlers
 from handlers.registration import register_registration_handlers
 from handlers.common import register_common_handlers
+from config import BOT_TOKEN, ADMIN_IDS
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
-
-# Получаем токен из переменных окружения
-BOT_TOKEN = os.getenv('BOT_TOKEN', '1336636056:AAHpYh17e4ov13-fADHi1sqi-3XJMxqyX7k')
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 user_last_messages = {}  # Будет хранить {user_id: [message_ids]}
-
-# === КОНФИГУРАЦИЯ АДМИНА ===
-ADMIN_IDS = [918896676, 966722525]
 
 def is_admin(user_id: int) -> bool:
     return user_id in ADMIN_IDS
